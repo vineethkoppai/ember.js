@@ -1,4 +1,4 @@
-function TransformComponentCurlyToReadonly() {
+export default function TransformComponentCurlyToReadonly() {
   // set later within HTMLBars to the syntax package
   this.syntax = null;
 }
@@ -12,10 +12,10 @@ TransformComponentCurlyToReadonly.prototype.transform = function TransformCompon
   var b = this.syntax.builders;
   var walker = new this.syntax.Walker();
 
-  walker.visit(ast, function(node) {
+  walker.visit(ast, node => {
     if (!validate(node)) { return; }
 
-    each(node.attributes, function(attr) {
+    each(node.attributes, attr => {
       if (attr.value.type !== 'MustacheStatement') { return; }
       if (attr.value.params.length || attr.value.hash.pairs.length) { return; }
 
@@ -31,9 +31,7 @@ function validate(node) {
 }
 
 function each(list, callback) {
-  for (var i = 0; i < list.length; i++) {
+  for (let i = 0; i < list.length; i++) {
     callback(list[i]);
   }
 }
-
-export default TransformComponentCurlyToReadonly;

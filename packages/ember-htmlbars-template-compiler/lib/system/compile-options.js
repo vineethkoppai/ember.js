@@ -66,8 +66,7 @@ export function removePlugin(type, PluginClass) {
   @property compileOptions
 */
 compileOptions = function(_options) {
-  var disableComponentGeneration = true;
-
+  let disableComponentGeneration = true;
   let options;
   // When calling `Ember.Handlebars.compile()` a second argument of `true`
   // had a special meaning (long since lost), this just gaurds against

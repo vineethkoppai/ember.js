@@ -8,8 +8,8 @@ import Component from '../component';
 import TextSupport from 'ember-views/mixins/text_support';
 import EmptyObject from 'ember-metal/empty_object';
 
-var inputTypeTestElement;
-var inputTypes = new EmptyObject();
+let inputTypeTestElement;
+const inputTypes = new EmptyObject();
 function canSetTypeOfInput(type) {
   if (type in inputTypes) {
     return inputTypes[type];

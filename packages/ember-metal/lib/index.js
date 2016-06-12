@@ -161,7 +161,7 @@ import Backburner from 'backburner';
 // END IMPORTS
 
 // BEGIN EXPORTS
-var EmberInstrumentation = Ember.Instrumentation = {};
+const EmberInstrumentation = Ember.Instrumentation = {};
 EmberInstrumentation.instrument = instrument;
 EmberInstrumentation.subscribe = instrumentationSubscribe;
 EmberInstrumentation.unsubscribe = instrumentationUnsubscribe;

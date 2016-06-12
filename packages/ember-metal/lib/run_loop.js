@@ -30,7 +30,7 @@ const onErrorTarget = {
   }
 };
 
-var backburner = new Backburner(['sync', 'actions', 'destroy'], {
+const backburner = new Backburner(['sync', 'actions', 'destroy'], {
   GUID_KEY: GUID_KEY,
   sync: {
     before: beginPropertyChanges,
@@ -499,43 +499,43 @@ run.next = function(...args) {
   `run.throttle()`.
 
   ```javascript
-  var runNext = run.next(myContext, function() {
+  let runNext = run.next(myContext, function() {
     // will not be executed
   });
 
   run.cancel(runNext);
 
-  var runLater = run.later(myContext, function() {
+  let runLater = run.later(myContext, function() {
     // will not be executed
   }, 500);
 
   run.cancel(runLater);
 
-  var runScheduleOnce = run.scheduleOnce('afterRender', myContext, function() {
+  let runScheduleOnce = run.scheduleOnce('afterRender', myContext, function() {
     // will not be executed
   });
 
   run.cancel(runScheduleOnce);
 
-  var runOnce = run.once(myContext, function() {
+  let runOnce = run.once(myContext, function() {
     // will not be executed
   });
 
   run.cancel(runOnce);
 
-  var throttle = run.throttle(myContext, function() {
+  let throttle = run.throttle(myContext, function() {
     // will not be executed
   }, 1, false);
 
   run.cancel(throttle);
 
-  var debounce = run.debounce(myContext, function() {
+  let debounce = run.debounce(myContext, function() {
     // will not be executed
   }, 1);
 
   run.cancel(debounce);
 
-  var debounceImmediate = run.debounce(myContext, function() {
+  let debounceImmediate = run.debounce(myContext, function() {
     // will be executed since we passed in true (immediate)
   }, 100, true);
 
@@ -568,7 +568,7 @@ run.cancel = function(timer) {
     console.log(this.name + ' ran.');
   }
 
-  var myContext = { name: 'debounce' };
+  let myContext = { name: 'debounce' };
 
   run.debounce(myContext, whoRan, 150);
 
@@ -591,7 +591,7 @@ run.cancel = function(timer) {
     console.log(this.name + ' ran.');
   }
 
-  var myContext = { name: 'debounce' };
+  let myContext = { name: 'debounce' };
 
   run.debounce(myContext, whoRan, 150, true);
 
@@ -634,7 +634,7 @@ run.debounce = function() {
     console.log(this.name + ' ran.');
   }
 
-  var myContext = { name: 'throttle' };
+  let myContext = { name: 'throttle' };
 
   run.throttle(myContext, whoRan, 150);
   // whoRan is invoked with context myContext

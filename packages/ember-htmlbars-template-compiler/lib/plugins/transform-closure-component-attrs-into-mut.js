@@ -43,7 +43,7 @@ function mutParameters(builder, node) {
 }
 
 function each(list, callback) {
-  for (var i = 0, l = list.length; i < l; i++) {
+  for (let i = 0, l = list.length; i < l; i++) {
     callback(list[i]);
   }
 }

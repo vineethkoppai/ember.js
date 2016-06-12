@@ -12,7 +12,7 @@ import { addObserver } from 'ember-metal/observer';
 QUnit.module('Ember.get');
 
 QUnit.test('should get arbitrary properties on an object', function() {
-  var obj = {
+  let obj = {
     string: 'string',
     number: 23,
     boolTrue: true,
@@ -20,7 +20,7 @@ QUnit.test('should get arbitrary properties on an object', function() {
     nullValue: null
   };
 
-  for (var key in obj) {
+  for (let key in obj) {
     if (!obj.hasOwnProperty(key)) {
       continue;
     }
@@ -29,8 +29,8 @@ QUnit.test('should get arbitrary properties on an object', function() {
 });
 
 QUnit.test('should not access a property more than once', function() {
-  var count = 0;
-  var obj = {
+  let count = 0;
+  let obj = {
     get id() { return ++count; }
   };
 
@@ -40,7 +40,7 @@ QUnit.test('should not access a property more than once', function() {
 });
 
 testBoth('should call unknownProperty on watched values if the value is undefined', function(get, set) {
-  var obj = {
+  let obj = {
     count: 0,
     unknownProperty(key) {
       equal(key, 'foo', 'should pass key');
@@ -49,7 +49,7 @@ testBoth('should call unknownProperty on watched values if the value is undefine
     }
   };
 
-  var count = 0;
+  let count = 0;
   addObserver(obj, 'foo', function() {
     count++;
   });
@@ -100,7 +100,7 @@ QUnit.test('warn on attempts to get a property path of null', function() {
 });
 
 QUnit.test('warn on attempts to use get with an unsupported property path', function() {
-  var obj = {};
+  let obj = {};
   expectAssertion(function() {
     get(obj, null);
   }, /The key provided to get must be a string, you passed null/);
@@ -123,15 +123,15 @@ QUnit.test('warn on attempts to use get with an unsupported property path', func
 //
 
 QUnit.test('(regression) watched properties on unmodified inherited objects should still return their original value', function() {
-  var MyMixin = Mixin.create({
+  let MyMixin = Mixin.create({
     someProperty: 'foo',
     propertyDidChange: observer('someProperty', function() {
       // NOTHING TO DO
     })
   });
 
-  var baseObject = MyMixin.apply({});
-  var theRealObject = Object.create(baseObject);
+  let baseObject = MyMixin.apply({});
+  let theRealObject = Object.create(baseObject);
 
   equal(get(theRealObject, 'someProperty'), 'foo', 'should return the set value, not false');
 });
@@ -139,7 +139,7 @@ QUnit.test('(regression) watched properties on unmodified inherited objects shou
 QUnit.module('Ember.getWithDefault');
 
 QUnit.test('should get arbitrary properties on an object', function() {
-  var obj = {
+  let obj = {
     string: 'string',
     number: 23,
     boolTrue: true,
@@ -147,7 +147,7 @@ QUnit.test('should get arbitrary properties on an object', function() {
     nullValue: null
   };
 
-  for (var key in obj) {
+  for (let key in obj) {
     if (!obj.hasOwnProperty(key)) {
       continue;
     }
@@ -163,7 +163,7 @@ QUnit.test('should get arbitrary properties on an object', function() {
 });
 
 QUnit.test('should call unknownProperty if defined and value is undefined', function() {
-  var obj = {
+  let obj = {
     count: 0,
     unknownProperty(key) {
       equal(key, 'foo', 'should pass key');
@@ -177,7 +177,7 @@ QUnit.test('should call unknownProperty if defined and value is undefined', func
 });
 
 testBoth('if unknownProperty is present, it is called', function(get, set) {
-  var obj = {
+  let obj = {
     count: 0,
     unknownProperty(key) {
       if (key === 'foo') {
@@ -188,7 +188,7 @@ testBoth('if unknownProperty is present, it is called', function(get, set) {
     }
   };
 
-  var count = 0;
+  let count = 0;
   addObserver(obj, 'foo', function() {
     count++;
   });
@@ -202,15 +202,15 @@ testBoth('if unknownProperty is present, it is called', function(get, set) {
 //
 
 QUnit.test('(regression) watched properties on unmodified inherited objects should still return their original value', function() {
-  var MyMixin = Mixin.create({
+  let MyMixin = Mixin.create({
     someProperty: 'foo',
     propertyDidChange: observer('someProperty', function() {
       // NOTHING TO DO
     })
   });
 
-  var baseObject = MyMixin.apply({});
-  var theRealObject = Object.create(baseObject);
+  let baseObject = MyMixin.apply({});
+  let theRealObject = Object.create(baseObject);
 
   equal(getWithDefault(theRealObject, 'someProperty', 'fail'), 'foo', 'should return the set value, not false');
 });

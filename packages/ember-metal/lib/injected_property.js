@@ -24,7 +24,7 @@ function InjectedProperty(type, name) {
 }
 
 function injectedPropertyGet(keyName) {
-  var desc = this[keyName];
+  let desc = this[keyName];
   let owner = getOwner(this) || this.container; // fallback to `container` for backwards compat
 
   assert(`InjectedProperties should be defined with the Ember.inject computed property macros.`, desc && desc.isDescriptor && desc.type);
@@ -35,14 +35,15 @@ function injectedPropertyGet(keyName) {
 
 InjectedProperty.prototype = Object.create(Descriptor.prototype);
 
-var InjectedPropertyPrototype = InjectedProperty.prototype;
-var ComputedPropertyPrototype = ComputedProperty.prototype;
-var AliasedPropertyPrototype = AliasedProperty.prototype;
+let InjectedPropertyPrototype = InjectedProperty.prototype;
+let ComputedPropertyPrototype = ComputedProperty.prototype;
+let AliasedPropertyPrototype = AliasedProperty.prototype;
 
 InjectedPropertyPrototype._super$Constructor = ComputedProperty;
 
 InjectedPropertyPrototype.get = ComputedPropertyPrototype.get;
 InjectedPropertyPrototype.readOnly = ComputedPropertyPrototype.readOnly;
+
 
 InjectedPropertyPrototype.teardown = ComputedPropertyPrototype.teardown;
 

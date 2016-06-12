@@ -45,7 +45,7 @@ import Object from 'ember-runtime/system/object';
   @public
   @since 1.13.0
 */
-var Helper = Object.extend({
+let Helper = Object.extend({
   isHelperInstance: true,
 
   /**
